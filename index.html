@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Guia de participação no NEXT 2026: IBM EV ChargeOps Challenge. Ciência da Computação Online — turmas de fevereiro.">
+<title>NEXT 2026 · CC Online · IBM EV ChargeOps Challenge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Doto:wght@800;900&display=swap">
+<style>
+/* Layout: one narrow column like a festival wristband guide, sticky chip nav, timeline rails for times. Single dark look by choice (NEXT stage world). */
+:root {
+  --bg: #0A0A12;
+  --panel: #14162B;
+  --line: #2A2D4F;
+  --fg: #F3F0F6;
+  --muted: #ABA7BE;
+  --pink: #FF2E7E;
+  --pink-ink: #0A0A12;
+  --pink-soft: #2A0D21;
+  --cyan: #34D6F5;
+  --cyan-soft: #0E2A33;
+  --f-display: 'Unbounded', 'Arial Black', Arial, sans-serif;
+  --f-body: 'DM Sans', Arial, sans-serif;
+  --f-led: 'Doto', 'Courier New', monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+img { max-width: 100%; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font-size: 17px; line-height: 1.55; margin: 0; }
+.wrap { max-width: 760px; margin: 0 auto; padding-inline: 18px; padding-block: 0 64px; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; line-height: 1.15; }
+h2 { font-size: clamp(24px, 6vw, 34px); font-weight: 800; }
+h3 { font-size: 18px; font-weight: 600; }
+p { margin: 0; }
+a { color: var(--cyan); }
+:focus-visible { outline: 3px solid var(--cyan); outline-offset: 2px; border-radius: 6px; }
+.led { font-family: var(--f-led); font-weight: 900; letter-spacing: 1px; font-variant-numeric: tabular-nums; }
+.eyebrow { font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--pink); }
+.muted { color: var(--muted); }
+
+/* hero */
+.hero { position: relative; padding-block: 44px 28px; display: grid; gap: 14px; }
+.hero::before { content: ""; position: absolute; inset: 0 -18px; background: radial-gradient(circle at 85% 10%, #4A0F33 0%, transparent 60%); z-index: -1; }
+.bar { height: 6px; background: linear-gradient(90deg, var(--pink), var(--cyan)); }
+.pill { display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 2px; background: var(--pink); color: var(--pink-ink); padding: 5px 12px; border-radius: 999px; justify-self: start; }
+.hero .build { font-family: var(--f-display); font-weight: 800; font-size: 16px; letter-spacing: 8px; color: var(--pink); }
+.hero h1 { font-size: clamp(30px, 8vw, 48px); font-weight: 800; }
+.hero .date { font-size: clamp(64px, 20vw, 120px); line-height: .95; color: var(--pink); }
+.countdown { display: flex; flex-wrap: wrap; gap: 10px; }
+.countdown span { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 6px 12px; font-size: 15px; }
+.countdown b { color: var(--pink); }
+
+/* nav */
+nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: rgba(10,10,18,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); margin-inline: -18px; padding: 10px 18px; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
+nav a { display: inline-block; color: var(--fg); text-decoration: none; font-size: 14px; font-weight: 500; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; margin-right: 6px; }
+nav a:hover { border-color: var(--pink); color: var(--pink); }
+
+section { padding-block: 40px 8px; display: grid; gap: 18px; scroll-margin-top: 60px; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 18px; display: grid; gap: 10px; min-width: 0; }
+.hot { background: var(--pink-soft); border: 2px solid var(--pink); }
+.cool { background: var(--cyan-soft); border: 2px solid var(--cyan); }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+
+/* team picker */
+.picker { display: grid; gap: 8px; }
+.picker label { font-weight: 700; }
+select { font: inherit; color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; width: 100%; }
+#mine { display: grid; gap: 4px; }
+#mine .led { font-size: 44px; color: var(--pink); line-height: 1; }
+
+/* schedule */
+.sched { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.sched li { display: grid; grid-template-columns: 74px 1fr; gap: 12px; align-items: baseline; padding: 10px 14px; border-radius: 12px; background: var(--panel); border: 1px solid var(--line); }
+.sched li .led { color: var(--cyan); font-size: 20px; }
+.sched li.b2 .led { color: var(--pink); }
+.sched li strong { font-family: var(--f-display); font-weight: 600; font-size: 15px; }
+.sched li small { color: var(--muted); font-size: 14px; display: block; }
+.sched li.me { border: 2px solid var(--pink); background: var(--pink-soft); }
+.sched .break { grid-template-columns: 1fr; text-align: center; color: var(--muted); font-size: 14px; background: transparent; border-style: dashed; }
+.blocks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.blocks div { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px; display: grid; gap: 2px; }
+.blocks .led { font-size: 24px; color: var(--pink); }
+.blocks div:nth-child(2) .led { color: var(--cyan); }
+.blocks div:nth-child(3) .led { color: var(--muted); }
+.blocks span:last-child { font-size: 14px; color: var(--muted); line-height: 1.3; }
+
+/* timeline */
+.timeline { list-style: none; margin: 0; padding: 0 0 0 18px; border-left: 2px solid var(--line); display: grid; gap: 18px; }
+.timeline li { position: relative; display: grid; gap: 2px; }
+.timeline li::before { content: ""; position: absolute; left: -26px; top: 8px; width: 12px; height: 12px; border-radius: 50%; background: var(--line); }
+.timeline li.key::before { background: var(--pink); box-shadow: 0 0 0 4px var(--pink-soft); }
+.timeline .led { font-size: 26px; color: var(--muted); }
+.timeline li.key .led { color: var(--pink); }
+
+/* address */
+.addr { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.addr p { min-width: 0; }
+button { font: inherit; font-size: 14px; font-weight: 700; color: var(--pink-ink); background: var(--pink); border: 0; border-radius: 999px; padding: 8px 14px; cursor: pointer; }
+button:hover { filter: brightness(1.1); }
+
+figure { margin: 0; display: grid; gap: 6px; }
+figure img { width: 100%; border-radius: 14px; border: 1px solid var(--line); display: block; height: auto; }
+figcaption { font-size: 13px; color: var(--muted); }
+
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; counter-reset: s; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 40px 1fr; gap: 12px; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 14px; }
+.steps li::before { content: counter(s); font-family: var(--f-led); font-weight: 900; font-size: 30px; color: var(--muted); line-height: 1; }
+.steps li.hot::before { color: var(--pink); }
+.tag { display: inline-block; font-size: 13px; font-weight: 700; color: var(--cyan); }
+ul.plain { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+
+/* awards */
+.awards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+.grade { font-family: var(--f-display); font-size: 36px; font-weight: 800; color: var(--pink); }
+.grade span { display: block; font-family: var(--f-body); font-size: 16px; font-weight: 500; color: var(--muted); }
+/* checklist */
+.volt { background: var(--pink); border: 0; color: var(--pink-ink); }
+.volt .led { font-size: 36px; line-height: 1; }
+.check { display: grid; gap: 8px; }
+.check label { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
+.check input { accent-color: var(--pink); width: 20px; height: 20px; margin-top: 2px; flex: none; }
+.check input:checked + span { color: var(--muted); text-decoration: line-through; }
+
+.cal { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.cal li { display: grid; grid-template-columns: 120px 1fr; gap: 12px; padding: 10px 14px; border-radius: 12px; background: var(--panel); border: 1px solid var(--line); align-items: baseline; }
+.cal li .led { font-size: 17px; color: var(--muted); }
+.cal li.hot .led { color: var(--pink); }
+.cal li.cool .led { color: var(--cyan); }
+
+.teams { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; }
+.teams div { background: var(--panel); border-left: 4px solid var(--pink); border-radius: 10px; padding: 10px 12px; }
+.teams strong { font-family: var(--f-display); font-weight: 600; font-size: 14px; display: block; }
+.teams small { color: var(--muted); }
+.teams div.me { background: var(--pink-soft); outline: 2px solid var(--pink); }
+
+footer { padding-block: 48px 0; display: grid; gap: 10px; }
+footer .big { font-family: var(--f-led); font-weight: 900; font-size: clamp(40px, 12vw, 72px); line-height: 1; }
+@media (max-width: 420px) {
+  .cal li { grid-template-columns: 96px 1fr; }
+  .blocks { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="bar"></div>
+<div class="wrap">
+  <header class="hero">
+    <span class="pill">FIAP · NEXT 2026</span>
+    <p class="build">BUILD THE NEXT</p>
+    <h1>IBM EV ChargeOps<br>Challenge</h1>
+    <p class="led date">24.OUT</p>
+    <p class="muted">Ciência da Computação Online — turmas de fevereiro. O guia das cinco equipes para o NEXT 2026 na ARCA.</p>
+    <div class="countdown" id="countdown" aria-live="polite"></div>
+  </header>
+
+  <nav aria-label="Seções do guia"><a href="#sabado">Programação</a><a href="#exposicao">Exposição</a><a href="#presenca">Participação</a><a href="#arca">Como chegar</a><a href="#premiacao">Premiação</a><a href="#checklist">Checklist</a><a href="#equipes">Equipes</a></nav>
+
+
+
+  <section id="sabado">
+    <p class="eyebrow">Sábado · 24/out · NEXT 2026</p>
+    <h2>O dia, hora a hora</h2>
+    <ol class="timeline">
+      <li class="key"><span class="led">12H–15H</span><b>Exposição dos projetos</b><span class="muted">Apresentem suas soluções, recebam o público e aproveitem para trocar experiências.</span></li>
+      <li><span class="led">15H00</span><b>Fim da exposição</b><span class="muted">Guardem seus equipamentos e aproveitem a programação do NEXT.</span></li>
+      <li class="key"><span class="led">16H30</span><b>Premiação prevista</b><span class="muted">Fiquem atentos aos avisos da organização sobre o horário e o local da premiação.</span></li>
+    </ol>
+  </section>
+
+  <section id="presenca">
+    <p class="eyebrow">Vamos juntos</p>
+    <h2>Participação da equipe</h2>
+    <div class="panel cool"><h3>O ideal é que todos compareçam</h3><p>O NEXT é uma oportunidade de apresentar o trabalho que vocês desenvolveram e compartilhar essa experiência com a equipe.</p><p class="muted">Organizem-se para receber os visitantes durante a exposição, das 12h às 15h. Se houver algum imprevisto, avisem os professores.</p></div>
+  </section>
+
+  <section id="arca">
+    <p class="eyebrow">Como chegar</p>
+    <h2>Nos vemos na ARCA</h2>
+    <div class="panel">
+      <div class="addr">
+        <p><b>ARCA</b><br><span id="addr-arca">Av. Manuel Bandeira, 360 · Vila Leopoldina · São Paulo</span></p>
+        <button type="button" data-copy="addr-arca">Copiar endereço</button>
+      </div>
+      <p class="muted">Estacionamento no próprio local, no mesmo endereço.</p>
+    </div>
+
+    <div class="panel hot">
+      <h3>Convite e ingressos</h3>
+      <p>Confiram o <b>convite do NEXT</b> e as orientações de acesso antes do evento. Se tiverem alguma dificuldade, falem com os professores.</p>
+      <p class="muted">Família e amigos: a pulseira NEXT é comprada no Portal do Aluno e retirada na entrada a partir das 12h. Ingresso só para convidados.</p>
+    </div>
+  </section>
+
+<section id="exposicao"><p class="eyebrow">12h–15h</p><h2>Exposição: mostrar e se conectar</h2><div class="panel cool"><h3>Seu projeto em destaque</h3><p>Preparem uma demonstração clara da solução e estejam prontos para conversar com quem visitar o espaço do Challenge.</p></div><div class="grid2"><div class="panel"><h3>Organização da equipe</h3><p class="muted">Combinem a participação de cada integrante para manter o projeto acompanhado durante a exposição.</p></div><div class="panel"><h3>Pitch de 1 minuto</h3><p class="muted">Problema, solução e demonstração. Todos devem conseguir explicar a proposta.</p></div><div class="panel"><h3>Demo + plano B</h3><p class="muted">Levem vídeo e imagens da solução funcionando, caso haja alguma dificuldade técnica.</p></div><div class="panel"><h3>Conexões</h3><p class="muted">Aproveitem as conversas com visitantes e profissionais. Deixem o link do projeto e o LinkedIn à mão.</p></div></div></section>
+
+  <section id="premiacao">
+    <p class="eyebrow">Horário previsto</p><h2>Premiação</h2>
+    <div class="panel hot"><p class="led" style="font-size:56px;line-height:1;color:var(--pink)">16H30</p><p>Fiquem atentos à chamada do <b>IBM EV ChargeOps Challenge</b>.</p><p class="muted">Acompanhem os avisos da organização para confirmar o horário e o local.</p></div>
+    <div class="panel cool"><h3>Uma conquista muito merecida!</h3><p>As cinco equipes classificadas garantem <b>nota 8,0 na Global Solution</b>. Para as três primeiras colocadas, a nota será:</p></div>
+    <div class="awards" aria-label="Notas de Global Solution por classificação">
+      <div class="panel hot"><h3>1º lugar</h3><p class="grade">10,0 <span>na GS</span></p></div>
+      <div class="panel"><h3>2º lugar</h3><p class="grade">9,5 <span>na GS</span></p></div>
+      <div class="panel"><h3>3º lugar</h3><p class="grade">9,0 <span>na GS</span></p></div>
+    </div>
+  </section>
+
+  <section id="checklist">
+    <p class="eyebrow">Imprevistos acontecem</p>
+    <h2>Checklist da equipe</h2>
+    <div class="panel volt" role="note">
+      <p class="led">⚡ 220V</p>
+      <p><b>Todas as tomadas do NEXT são 220V.</b> Confiram se os carregadores dos notebooks são compatíveis com 220V.</p>
+    </div>
+    <p class="muted">Marque aqui; fica salvo só neste aparelho.</p>
+    <div class="grid2">
+      <div class="panel check"><h3>Antes do NEXT</h3>
+        <label><input type="checkbox" id="c1"><span>Confirmar o convite do NEXT</span></label>
+        <label><input type="checkbox" id="c2"><span>Ensaiar pitch e demo com cronômetro</span></label>
+        <label><input type="checkbox" id="c3"><span>Testar a demonstração no notebook</span></label>
+        <label><input type="checkbox" id="c4"><span>Combinar a chegada da equipe à ARCA</span></label>
+      </div>
+      <div class="panel check"><h3>Levar</h3>
+        <label><input type="checkbox" id="c5"><span>Notebooks e carregadores</span></label>
+        <label><input type="checkbox" id="c6"><span>Extensão de tomada, se necessário</span></label>
+        <label><input type="checkbox" id="c14"><span>Carregadores compatíveis com 220V</span></label>
+        <label><input type="checkbox" id="c9"><span>Vídeo da demo funcionando (plano B)</span></label>
+      </div>
+      <div class="panel check"><h3>No dia</h3>
+        <label><input type="checkbox" id="c10"><span>Participar da exposição das 12h às 15h</span></label>
+        <label><input type="checkbox" id="c11"><span>Roupa confortável: o dia é longo</span></label>
+        <label><input type="checkbox" id="c12"><span>Água e lanche</span></label>
+        <label><input type="checkbox" id="c13"><span>Cuidar dos equipamentos e pertences</span></label>
+      </div>
+    </div>
+    <p class="muted">Cada integrante é responsável pelos cuidados com seus equipamentos e pertences durante o evento.</p>
+  </section>
+
+<section id="equipes">
+    <p class="eyebrow">5 equipes · CC Online</p>
+    <h2>Os classificados</h2>
+    <div class="teams" id="teams"></div>
+  </section>
+
+  <footer>
+    <p class="eyebrow">Let's rock</p>
+    <p class="big">THE FUTURE</p>
+    <p>Vocês trabalharam duro o ano todo nesse projeto. Chegou a hora de mostrar para todo mundo.</p>
+    <p class="muted">Dúvidas? Falem com a gente: André Tritiack e Lucas Gomes Jorge Gonçalez.</p>
+    <p class="muted" style="border-top:1px solid var(--line);padding-top:20px;margin-top:12px">Informações gerais do evento: <a href="https://experience.fiap.com.br/next" target="_blank" rel="noopener noreferrer">site oficial do NEXT ↗</a></p>
+  </footer>
+</div>
+
+<script>
+const TEAMS = [['1CCOA','11'],['1CCOB','5'],['1CCOB','3'],['1CCOC','35'],['1CCOC','18']];
+document.getElementById('teams').innerHTML = TEAMS.map(t => `<div><strong>${t[0]}</strong><small>Equipe ${t[1]}</small></div>`).join('');
+document.querySelectorAll('.check input').forEach(cb => {
+  try { cb.checked = localStorage.getItem('ev-chargeops-ck-' + cb.id) === '1'; } catch (e) {}
+  cb.addEventListener('change', () => { try { localStorage.setItem('ev-chargeops-ck-' + cb.id, cb.checked ? '1' : '0'); } catch (e) {} });
+});
+
+document.querySelectorAll('[data-copy]').forEach(btn => btn.addEventListener('click', () => {
+  const el = document.getElementById(btn.dataset.copy), text = el.textContent;
+  const done = () => { btn.textContent = 'Copiado'; setTimeout(() => btn.textContent = 'Copiar endereço', 1600); };
+  navigator.clipboard.writeText(text).then(done).catch(() => { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); });
+}));
+
+(function countdown() {
+  const dateParts = new Intl.DateTimeFormat('en-CA', {timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+  const part = t => Number(dateParts.find(p => p.type === t).value);
+  const today = Date.UTC(part('year'), part('month')-1, part('day'));
+  const days = d => Math.round((Date.UTC(2026, 9, d) - today) / 864e5);
+  const fmt = (n, label) => n > 1 ? `<span>Faltam <b>${n} dias</b> para ${label}</span>` : n === 1 ? `<span><b>Amanhã</b>: ${label}</span>` : n === 0 ? `<span><b>Hoje</b>: ${label}</span>` : '';
+  document.getElementById('countdown').innerHTML = fmt(days(24), 'o NEXT');
+})();
+</script>
+</body>
+</html>
