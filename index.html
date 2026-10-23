@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Guia de participação no NEXT 2026: IBM EV ChargeOps Challenge. Ciência da Computação Online — turmas de fevereiro.">
-<title>NEXT 2026 · CC Online · IBM EV ChargeOps Challenge</title>
+<meta name="description" content="Guia das equipes classificadas de CC Online no NEXT 2026: horários, chegada, exposição, premiação e checklist interativo.">
+<title>NEXT 2026 · Guia das equipes · CC Online</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Doto:wght@800;900&display=swap">
 <style>
@@ -143,22 +143,70 @@ footer .big { font-family: var(--f-led); font-weight: 900; font-size: clamp(40px
   .cal li { grid-template-columns: 96px 1fr; }
   .blocks { grid-template-columns: 1fr; }
 }
+
+/* Navigation and preparation, with the existing NEXT palette. */
+.skip { position: fixed; left: 12px; top: -100px; z-index: 20; background: var(--cyan); color: var(--bg); padding: 12px; }
+.skip:focus { top: 12px; }
+.challenge-name { font-size: 18px; font-weight: 700; color: var(--muted); }
+.quick-links { display: flex; flex-wrap: wrap; gap: 10px; padding-top: 6px; }
+.quick-links a { display: flex; align-items: center; gap: 14px; min-height: 46px; padding: 10px 16px; border-radius: 999px; text-decoration: none; color: var(--pink-ink); background: var(--pink); font-size: 15px; font-weight: 700; }
+.quick-links a:last-child { color: var(--cyan); border: 1px solid var(--cyan); background: transparent; }
+nav { overflow: visible; white-space: normal; }
+.nav-links { display: flex; flex-wrap: wrap; gap: 6px; }
+.nav-links a { margin: 0; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; padding: 8px 12px; }
+.nav-links a[aria-current="location"] { color: var(--pink); border-color: var(--pink); background: var(--pink-soft); }
+.nav-toggle { display: none; }
+section { scroll-margin-top: 138px; }
+.grid2 { grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); }
+.address-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.address-actions button, .route { min-height: 44px; }
+.route { display: inline-flex; align-items: center; padding: 8px 12px; font-size: 14px; }
+.copy-status:empty { display: none; }
+.check label { min-height: 44px; padding: 6px 0; }
+.check-progress { display: grid; gap: 8px; }
+#check-count { font-weight: 700; }
+progress { display: block; width: 100%; height: 8px; border: 0; border-radius: 999px; background: var(--line); accent-color: var(--pink); overflow: hidden; }
+progress::-webkit-progress-bar { background: var(--line); }
+progress::-webkit-progress-value { background: var(--pink); }
+progress::-moz-progress-bar { background: var(--pink); }
+#check-storage { font-size: 14px; }
+h2[tabindex="-1"]:focus { outline: none; }
+@media (max-width: 600px) {
+  nav { padding: 8px 18px; }
+  .nav-toggle { display: flex; width: 100%; min-height: 46px; justify-content: space-between; align-items: center; border: 1px solid var(--line); border-radius: 12px; color: var(--fg); background: var(--panel); font-size: 15px; text-align: left; }
+  .nav-toggle b { color: var(--cyan); margin-left: 8px; }
+  .menu-indicator { font-size: 22px; }
+  .nav-toggle[aria-expanded="true"] .menu-indicator { transform: rotate(180deg); }
+  .nav-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); padding-top: 8px; max-height: 60vh; overflow-y: auto; }
+  nav:has(.nav-toggle:not([hidden])[aria-expanded="false"]) .nav-links { display: none; }
+  .nav-links a { font-size: 14px; }
+  section { scroll-margin-top: 82px; }
+  .hero { padding-top: 30px; }
+  .timeline .led { font-size: 25px; }
+}
 </style>
 </head>
 <body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
 
 <div class="bar"></div>
 <div class="wrap">
   <header class="hero">
     <span class="pill">FIAP · NEXT 2026</span>
     <p class="build">BUILD THE NEXT</p>
-    <h1>IBM EV ChargeOps<br>Challenge</h1>
+    <h1>NEXT 2026</h1>
+    <p class="challenge-name">Challenge GoodWe · sponsor IBM</p>
     <p class="led date">24.OUT</p>
     <p class="muted">Ciência da Computação Online — turmas de fevereiro. O guia das cinco equipes para o NEXT 2026 na ARCA.</p>
     <div class="countdown" id="countdown" aria-live="polite"></div>
+    <div class="quick-links"><a href="#sabado">Ver horários <span aria-hidden="true">↓</span></a><a href="#checklist">Abrir checklist <span aria-hidden="true">✓</span></a></div>
   </header>
 
-  <nav aria-label="Seções do guia"><a href="#sabado">Programação</a><a href="#exposicao">Exposição</a><a href="#presenca">Participação</a><a href="#arca">Como chegar</a><a href="#premiacao">Premiação</a><a href="#checklist">Checklist</a><a href="#equipes">Equipes</a></nav>
+  <nav aria-label="Seções do guia">
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" hidden><span>Ir para <b id="nav-current">Horários</b></span><span class="menu-indicator" aria-hidden="true">⌄</span></button>
+    <div class="nav-links" id="nav-links"><a href="#sabado" aria-current="location">Horários</a><a href="#exposicao">Exposição</a><a href="#checklist">Checklist</a><a href="#arca">Como chegar</a><a href="#presenca">Participação</a><a href="#premiacao">Premiação</a><a href="#equipes">Equipes</a></div>
+  </nav>
+  <main id="conteudo">
 
 
 
@@ -166,27 +214,44 @@ footer .big { font-family: var(--f-led); font-weight: 900; font-size: clamp(40px
     <p class="eyebrow">Sábado · 24/out · NEXT 2026</p>
     <h2>O dia, hora a hora</h2>
     <ol class="timeline">
+      <li><span class="led">11H30–11H40</span><b>Chegada sugerida</b><span class="muted">Reservem de 20 a 30 minutos antes da exposição para organizar a demonstração. André e Lucas estarão no local a partir das 11h.</span></li>
       <li class="key"><span class="led">12H–15H</span><b>Exposição dos projetos</b><span class="muted">Apresentem suas soluções, recebam o público e aproveitem para trocar experiências.</span></li>
       <li><span class="led">15H00</span><b>Fim da exposição</b><span class="muted">Guardem seus equipamentos e aproveitem a programação do NEXT.</span></li>
       <li class="key"><span class="led">16H30</span><b>Premiação prevista</b><span class="muted">Fiquem atentos aos avisos da organização sobre o horário e o local da premiação.</span></li>
     </ol>
   </section>
 
+  <section id="exposicao">
+    <p class="eyebrow">12h–15h</p>
+    <h2>Exposição: mostrar e se conectar</h2>
+    <div class="panel cool"><h3>Notebook, tela e conexão</h3><p>Levem seus <b>próprios notebooks</b> para apresentar a solução. Um <b>segundo monitor é opcional</b>, se ajudar na demonstração.</p><p>Haverá <b>rede Wi-Fi disponível</b> no local.</p></div>
+    <div class="grid2">
+      <div class="panel"><h3>Pitch de 1 minuto</h3><p class="muted">Problema, solução e demonstração. Todos devem conseguir explicar a proposta.</p></div>
+      <div class="panel"><h3>Demo + plano B</h3><p class="muted">Deixem vídeo e imagens da solução salvos no notebook para usar caso a demonstração ou a conexão falhem.</p></div>
+      <div class="panel"><h3>Conexões</h3><p class="muted">Aproveitem as conversas com visitantes e profissionais. Deixem o link do projeto e o LinkedIn à mão.</p></div>
+    </div>
+  </section>
+
   <section id="presenca">
     <p class="eyebrow">Vamos juntos</p>
     <h2>Participação da equipe</h2>
-    <div class="panel cool"><h3>O ideal é que todos compareçam</h3><p>O NEXT é uma oportunidade de apresentar o trabalho que vocês desenvolveram e compartilhar essa experiência com a equipe.</p><p class="muted">Organizem-se para receber os visitantes durante a exposição, das 12h às 15h. Se houver algum imprevisto, avisem os professores.</p></div>
+    <div class="panel cool"><h3>O ideal é que todos compareçam</h3><p>O NEXT é uma oportunidade de apresentar o trabalho que vocês desenvolveram e compartilhar essa experiência com a equipe.</p><p class="muted">Combinem turnos para manter o projeto acompanhado durante a exposição. Se houver algum imprevisto, avisem os professores.</p></div>
   </section>
 
   <section id="arca">
     <p class="eyebrow">Como chegar</p>
     <h2>Nos vemos na ARCA</h2>
+    <div class="panel cool">
+      <h3>Onde fica nossa exposição</h3>
+      <p>Entrando na ARCA, sigam pelo <b>lado esquerdo</b>. Estaremos na <b>Área 1</b> do espaço <b>Challenges A</b>.</p>
+      <a class="route" href="https://next-org-system.vercel.app/mapa" target="_blank" rel="noopener noreferrer">Abrir mapa do NEXT 2026 ↗</a>
+    </div>
     <div class="panel">
       <div class="addr">
         <p><b>ARCA</b><br><span id="addr-arca">Av. Manuel Bandeira, 360 · Vila Leopoldina · São Paulo</span></p>
-        <button type="button" data-copy="addr-arca">Copiar endereço</button>
+        <div class="address-actions"><button type="button" data-copy="addr-arca">Copiar endereço</button><a class="route" href="https://www.google.com/maps/search/?api=1&amp;query=ARCA%20Av.%20Manuel%20Bandeira%20360%20Sao%20Paulo" target="_blank" rel="noopener noreferrer">Ver endereço no mapa ↗</a></div>
       </div>
-      <p class="muted">Estacionamento no próprio local, no mesmo endereço.</p>
+      <p class="muted">Estacionamento no próprio local, no mesmo endereço.</p><p class="copy-status muted" id="copy-status" role="status"></p>
     </div>
 
     <div class="panel hot">
@@ -195,8 +260,6 @@ footer .big { font-family: var(--f-led); font-weight: 900; font-size: clamp(40px
       <p class="muted">Família e amigos: a pulseira NEXT é comprada no Portal do Aluno e retirada na entrada a partir das 12h. Ingresso só para convidados.</p>
     </div>
   </section>
-
-<section id="exposicao"><p class="eyebrow">12h–15h</p><h2>Exposição: mostrar e se conectar</h2><div class="panel cool"><h3>Seu projeto em destaque</h3><p>Preparem uma demonstração clara da solução e estejam prontos para conversar com quem visitar o espaço do Challenge.</p></div><div class="grid2"><div class="panel"><h3>Organização da equipe</h3><p class="muted">Combinem a participação de cada integrante para manter o projeto acompanhado durante a exposição.</p></div><div class="panel"><h3>Pitch de 1 minuto</h3><p class="muted">Problema, solução e demonstração. Todos devem conseguir explicar a proposta.</p></div><div class="panel"><h3>Demo + plano B</h3><p class="muted">Levem vídeo e imagens da solução funcionando, caso haja alguma dificuldade técnica.</p></div><div class="panel"><h3>Conexões</h3><p class="muted">Aproveitem as conversas com visitantes e profissionais. Deixem o link do projeto e o LinkedIn à mão.</p></div></div></section>
 
   <section id="premiacao">
     <p class="eyebrow">Horário previsto</p><h2>Premiação</h2>
@@ -216,18 +279,18 @@ footer .big { font-family: var(--f-led); font-weight: 900; font-size: clamp(40px
       <p class="led">⚡ 220V</p>
       <p><b>Todas as tomadas do NEXT são 220V.</b> Confiram se os carregadores dos notebooks são compatíveis com 220V.</p>
     </div>
-    <p class="muted">Marque aqui; fica salvo só neste aparelho.</p>
+    <div class="check-progress"><p id="check-count" role="status">0 itens concluídos</p><progress id="check-progress" value="0" max="12" aria-label="Progresso do checklist"></progress><p class="muted" id="check-storage">Marque aqui; fica salvo neste navegador e aparelho.</p></div>
     <div class="grid2">
       <div class="panel check"><h3>Antes do NEXT</h3>
         <label><input type="checkbox" id="c1"><span>Confirmar o convite do NEXT</span></label>
         <label><input type="checkbox" id="c2"><span>Ensaiar pitch e demo com cronômetro</span></label>
         <label><input type="checkbox" id="c3"><span>Testar a demonstração no notebook</span></label>
-        <label><input type="checkbox" id="c4"><span>Combinar a chegada da equipe à ARCA</span></label>
+        <label><input type="checkbox" id="c4"><span>Combinar o transporte e a chegada da equipe</span></label>
       </div>
       <div class="panel check"><h3>Levar</h3>
-        <label><input type="checkbox" id="c5"><span>Notebooks e carregadores</span></label>
+        <label><input type="checkbox" id="c5"><span>Notebooks e carregadores compatíveis com 220V</span></label>
         <label><input type="checkbox" id="c6"><span>Extensão de tomada, se necessário</span></label>
-        <label><input type="checkbox" id="c14"><span>Carregadores compatíveis com 220V</span></label>
+        <label><input type="checkbox" id="c15"><span>Monitor e cabos, se optarem por uma segunda tela</span></label>
         <label><input type="checkbox" id="c9"><span>Vídeo da demo funcionando (plano B)</span></label>
       </div>
       <div class="panel check"><h3>No dia</h3>
@@ -240,12 +303,13 @@ footer .big { font-family: var(--f-led); font-weight: 900; font-size: clamp(40px
     <p class="muted">Cada integrante é responsável pelos cuidados com seus equipamentos e pertences durante o evento.</p>
   </section>
 
-<section id="equipes">
+  <section id="equipes">
     <p class="eyebrow">5 equipes · CC Online</p>
     <h2>Os classificados</h2>
     <div class="teams" id="teams"></div>
   </section>
 
+  </main>
   <footer>
     <p class="eyebrow">Let's rock</p>
     <p class="big">THE FUTURE</p>
@@ -258,24 +322,97 @@ footer .big { font-family: var(--f-led); font-weight: 900; font-size: clamp(40px
 <script>
 const TEAMS = [['1CCOA','11'],['1CCOB','5'],['1CCOB','3'],['1CCOC','35'],['1CCOC','18']];
 document.getElementById('teams').innerHTML = TEAMS.map(t => `<div><strong>${t[0]}</strong><small>Equipe ${t[1]}</small></div>`).join('');
-document.querySelectorAll('.check input').forEach(cb => {
-  try { cb.checked = localStorage.getItem('ev-chargeops-ck-' + cb.id) === '1'; } catch (e) {}
-  cb.addEventListener('change', () => { try { localStorage.setItem('ev-chargeops-ck-' + cb.id, cb.checked ? '1' : '0'); } catch (e) {} });
+
+const checkboxes = [...document.querySelectorAll('.check input')];
+const storageNote = document.getElementById('check-storage');
+let canStore = true;
+try { localStorage.setItem('next-storage-test','1'); localStorage.removeItem('next-storage-test'); }
+catch { canStore = false; storageNote.textContent = 'Neste navegador, as marcações ficam somente nesta sessão.'; }
+function updateProgress() {
+  const done = checkboxes.filter(cb => cb.checked).length;
+  const total = checkboxes.length;
+  document.getElementById('check-count').textContent = `${done} de ${total} itens concluídos${done === total ? ' · Tudo pronto!' : ''}`;
+  const progress = document.getElementById('check-progress');
+  progress.max = total;
+  progress.value = done;
+}
+checkboxes.forEach(cb => {
+  if (canStore) {
+    try { cb.checked = localStorage.getItem('ev-chargeops-ck-' + cb.id) === '1'; } catch {}
+  }
+  cb.addEventListener('change', () => {
+    if (canStore) {
+      try { localStorage.setItem('ev-chargeops-ck-' + cb.id, cb.checked ? '1' : '0'); }
+      catch { canStore = false; storageNote.textContent = 'Não foi possível salvar. As marcações ficam somente nesta sessão.'; }
+    }
+    updateProgress();
+  });
+});
+updateProgress();
+window.addEventListener('storage', event => {
+  if (!event.key || event.key.startsWith('ev-chargeops-ck-')) {
+    checkboxes.forEach(cb => { try { cb.checked = localStorage.getItem('ev-chargeops-ck-' + cb.id) === '1'; } catch {} });
+    updateProgress();
+  }
 });
 
-document.querySelectorAll('[data-copy]').forEach(btn => btn.addEventListener('click', () => {
-  const el = document.getElementById(btn.dataset.copy), text = el.textContent;
-  const done = () => { btn.textContent = 'Copiado'; setTimeout(() => btn.textContent = 'Copiar endereço', 1600); };
-  navigator.clipboard.writeText(text).then(done).catch(() => { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); });
+const menuButton = document.getElementById('nav-toggle');
+const navLinks = [...document.querySelectorAll('.nav-links a')];
+menuButton.hidden = false;
+function closeMenu() { menuButton.setAttribute('aria-expanded','false'); }
+menuButton.addEventListener('click', () => {
+  menuButton.setAttribute('aria-expanded', String(menuButton.getAttribute('aria-expanded') !== 'true'));
+});
+function markSection(id) {
+  navLinks.forEach(link => {
+    if (link.hash === '#' + id) {
+      link.setAttribute('aria-current','location');
+      document.getElementById('nav-current').textContent = link.textContent;
+    } else { link.removeAttribute('aria-current'); }
+  });
+}
+document.querySelectorAll('main section h2').forEach(h => h.tabIndex = -1);
+document.querySelectorAll('a[href^="#"]').forEach(link => link.addEventListener('click', () => {
+  closeMenu();
+  const target = document.querySelector(link.hash);
+  if (target) {
+    markSection(target.id);
+    target.querySelector('h2')?.focus({preventScroll:true});
+  }
+}));
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && menuButton.getAttribute('aria-expanded') === 'true') { closeMenu(); menuButton.focus(); }
+});
+document.addEventListener('click', event => { if (!event.target.closest('nav')) closeMenu(); });
+function syncCurrentSection() {
+  const sections = [...document.querySelectorAll('main section')];
+  const active = sections.filter(s => s.getBoundingClientRect().top <= 155).at(-1) || sections[0];
+  if (active) markSection(active.id);
+}
+window.addEventListener('scroll', syncCurrentSection, {passive:true});
+window.addEventListener('hashchange', () => { closeMenu(); if (location.hash) markSection(location.hash.slice(1)); });
+syncCurrentSection();
+
+document.querySelectorAll('[data-copy]').forEach(btn => btn.addEventListener('click', async () => {
+  const el = document.getElementById(btn.dataset.copy);
+  const status = document.getElementById('copy-status');
+  try {
+    if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
+    await navigator.clipboard.writeText(el.textContent);
+    status.textContent = 'Endereço copiado.';
+  } catch {
+    const range = document.createRange(); range.selectNodeContents(el);
+    const selection = getSelection(); selection.removeAllRanges(); selection.addRange(range);
+    status.textContent = 'Selecione e copie o endereço acima.';
+  }
 }));
 
 (function countdown() {
   const dateParts = new Intl.DateTimeFormat('en-CA', {timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
   const part = t => Number(dateParts.find(p => p.type === t).value);
   const today = Date.UTC(part('year'), part('month')-1, part('day'));
-  const days = d => Math.round((Date.UTC(2026, 9, d) - today) / 864e5);
-  const fmt = (n, label) => n > 1 ? `<span>Faltam <b>${n} dias</b> para ${label}</span>` : n === 1 ? `<span><b>Amanhã</b>: ${label}</span>` : n === 0 ? `<span><b>Hoje</b>: ${label}</span>` : '';
-  document.getElementById('countdown').innerHTML = fmt(days(24), 'o NEXT');
+  const days = Math.round((Date.UTC(2026,9,24) - today) / 864e5);
+  document.getElementById('countdown').innerHTML = days > 1 ? `<span>Faltam <b>${days} dias</b> para o NEXT</span>` : days === 1 ? '<span><b>É amanhã!</b> Nos vemos na ARCA.</span>' : days === 0 ? '<span><b>É hoje!</b> Nos vemos na ARCA.</span>' : '<span>NEXT 2026 · <b>24 de outubro</b></span>';
 })();
 </script>
 </body>
